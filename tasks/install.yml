@@ -15,10 +15,10 @@
     update_cache: true
     state: present
   with_items:
-    - php7.2
-    - php7.2-cli
-    - php7.2-fpm
-    - php7.2-common
+    - php
+    - php-cli
+    - php-fpm
+    - php-common
   tags: packages
 
 - name: Install PHP 7.2 additionnal packages
@@ -27,7 +27,7 @@
     update_cache: true
     state: present
   with_items:
-    - {{ php_packages }}
+    - "{{ php_packages }}"
   tags: packages
 
 - name: Ensure the nginx service is running
@@ -38,6 +38,6 @@
 
 - name: Ensure the php7.2-fpm service is running
   service: 
-    name: "php7.2-fpm"
+    name: "{{ php_service_name }}"
     state: started 
     enabled: yes
